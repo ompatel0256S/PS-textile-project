@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TexStat Analytics</title>
+
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">TexStat <span>ANALYTICS</span></div>
+        <p class="nav-label">DASHBOARD</p>
+        <button class="nav active" data-topic="data">Textile Data</button>
+
+        <p class="nav-label">STATISTICS</p>
+        <button class="nav" data-topic="mean">Mean</button>
+        <button class="nav" data-topic="median">Median</button>
+        <button class="nav" data-topic="mode">Mode</button>
+        <button class="nav" data-topic="variance">Variance</button>
+        <button class="nav" data-topic="sd">Standard Deviation</button>
+        <button class="nav" data-topic="defect_rate">Defect Rate</button>
+
+        <p class="nav-label">PROBABILITY</p>
+        <button class="nav" data-topic="machine">Machine Analysis</button>
+        <button class="nav" data-topic="shift">Shift Analysis</button>
+        <button class="nav" data-topic="fabric">Fabric Type</button>
+        <button class="nav" data-topic="defect_type">Defect Type</button>
+        <button class="nav" data-topic="prob_gt3">P(Defect Rate &gt; 3%)</button>
+        <button class="nav" data-topic="bayes">Bayes' Theorem</button>
+        <button class="nav" data-topic="conditional">Conditional Probability</button>
+        <button class="nav" data-topic="total_probability">Total Probability</button>
+        <button class="nav" data-topic="complement">Complement Rule</button>
+        <button class="nav" data-topic="correlation">Temperature Correlation</button>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">TEXTILE INDUSTRY / ANALYTICS</p>
+                <h1 id="page-title">Textile Data Overview</h1>
+            </div>
+            <span class="status">● Dataset Loaded</span>
+        </header>
+
+        <section class="hero">
+            <p>TEXTILE QUALITY ANALYSIS</p>
+            <h2>Statistics &amp; Probability Dashboard</h2>
+            <p>Explore production, defects and probability through interactive calculations.</p>
+        </section>
+
+        <section class="cards">
+            <div class="card">
+                <span>Total Records</span>
+                <strong>{{ summary.records }}</strong>
+            </div>
+            <div class="card">
+                <span>Total Production</span>
+                <strong>{{ "{:,}".format(summary.production) }}</strong>
+                <small>meters</small>
+            </div>
+            <div class="card">
+                <span>Defective Meters</span>
+                <strong>{{ "{:,}".format(summary.defective) }}</strong>
+                <small>meters</small>
+            </div>
+            <div class="card">
+                <span>Overall Defect Rate</span>
+                <strong>{{ summary.defect_rate }}%</strong>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <h2 id="result-title">Original Textile Data</h2>
+                    <p id="subtitle">Your supplied dataset</p>
+                </div>
+                <span class="tag">ANALYTICS</span>
+            </div>
+
+            <div id="data-section" class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Shift</th>
+                            <th>Machine</th>
+                            <th>Fabric</th>
+                            <th>Production</th>
+                            <th>Defective</th>
+                            <th>Defect Type</th>
+                            <th>Temp</th>
+                            <th>Humidity</th>
+                            <th>Defect %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in rows %}
+                        <tr>
+                            <td>{{ row.Date }}</td>
+                            <td>{{ row.Shift }}</td>
+                            <td>{{ row.Machine_ID }}</td>
+                            <td>{{ row.Fabric_Type }}</td>
+                            <td>{{ "{:,}".format(row.Production_Meters) }}</td>
+                            <td>{{ "{:,}".format(row.Defective_Meters) }}</td>
+                            <td>{{ row.Defect_Type }}</td>
+                            <td>{{ row.Temperature }}</td>
+                            <td>{{ row.Humidity }}</td>
+                            <td>{{ "%.2f"|format(row.Defect_Rate) }}%</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="calculation-section" class="hidden">
+                <div class="formula-box">
+                    <span>FORMULA</span>
+                    <p id="formula"></p>
+                </div>
+
+                <div class="answer-box">
+                    <span>FINAL ANSWER</span>
+                    <h2 id="answer"></h2>
+                </div>
+
+                <div class="steps-box">
+                    <h3>Step-by-step calculation</h3>
+                    <ol id="steps"></ol>
+                </div>
+
+                <div id="note" class="note hidden"></div>
+
+                <div class="graph-heading">
+                    <h3>Graph Visualization</h3>
+                    <p>Selected topic ka graphical result</p>
+                </div>
+                <div id="chart"></div>
+            </div>
+        </section>
+
+        <footer>TexStat Analytics · Python Flask · Pandas · Plotly</footer>
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f3f6fb;
+    color: #1c2b40;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 245px;
+    flex-shrink: 0;
+    background: #142d4e;
+    color: white;
+    padding: 24px 14px;
+}
+
+.brand {
+    font-size: 25px;
+    font-weight: 800;
+    margin: 0 8px 30px;
+}
+
+.brand span {
+    display: block;
+    margin-top: 5px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #a8c9e9;
+}
+
+.nav-label {
+    margin: 23px 10px 9px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #91a9c4;
+    font-weight: 700;
+}
+
+.nav {
+    width: 100%;
+    padding: 11px 12px;
+    border: 0;
+    border-radius: 8px;
+    margin: 2px 0;
+    background: transparent;
+    color: #d2deec;
+    text-align: left;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.nav:hover,
+.nav.active {
+    background: #2b527d;
+    color: white;
+}
+
+.main {
+    min-width: 0;
+    flex: 1;
+    padding: 25px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.topbar h1 {
+    font-size: 25px;
+    margin: 5px 0;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    color: #71839a;
+    font-weight: 700;
+}
+
+.status {
+    font-size: 11px;
+    color: #198465;
+    background: #e5f7ef;
+    padding: 10px 12px;
+    border-radius: 20px;
+}
+
+.hero {
+    background: linear-gradient(120deg, #173958, #2875a7);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    color: #c9e1f3;
+    font-size: 12px;
+}
+
+.hero h2 {
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 13px;
+    margin-bottom: 20px;
+}
+
+.card,
+.panel {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.card {
+    padding: 17px;
+}
+
+.card span,
+.card small {
+    display: block;
+    color: #7b899b;
+    font-size: 11px;
+}
+
+.card strong {
+    display: block;
+    font-size: 23px;
+    margin: 12px 0 5px;
+    overflow-wrap: anywhere;
+}
+
+.panel {
+    overflow: hidden;
+}
+
+.panel-heading {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.panel-heading h2 {
+    font-size: 17px;
+    margin: 0;
+}
+
+.panel-heading p {
+    font-size: 11px;
+    color: #8491a2;
+}
+
+.tag {
+    background: #eaf3ff;
+    color: #2869a8;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+}
+
+.table-container {
+    overflow: auto;
+    max-width: 100%;
+    border-top: 1px solid #e6ebf2;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 950px;
+    font-size: 11px;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #edf0f5;
+    white-space: nowrap;
+}
+
+th {
+    background: #f8fafc;
+    color: #64758b;
+}
+
+td {
+    color: #47576b;
+}
+
+tbody tr:hover {
+    background: #f3f8ff;
+}
+
+#calculation-section {
+    padding: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.formula-box {
+    padding: 17px;
+    background: #f1f6fd;
+    border: 1px solid #dfe9f6;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.formula-box span,
+.answer-box span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #6c829d;
+}
+
+.formula-box p {
+    color: #1f5489;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.answer-box {
+    padding: 18px;
+    background: #ecf9f3;
+    border: 1px solid #d4efe2;
+    border-radius: 10px;
+}
+
+.answer-box h2 {
+    color: #137b59;
+    font-size: 28px;
+    overflow-wrap: anywhere;
+}
+
+.steps-box {
+    margin-top: 22px;
+}
+
+.steps-box h3,
+.graph-heading h3 {
+    font-size: 15px;
+}
+
+.steps-box li {
+    padding: 6px 0;
+    color: #526277;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.note {
+    background: #fff7e6;
+    color: #795b21;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.graph-heading {
+    border-top: 1px solid #e6ebf2;
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+.graph-heading p {
+    color: #8290a1;
+    font-size: 11px;
+}
+
+#chart {
+    width: 100%;
+    min-height: 320px;
+}
+
+footer {
+    color: #94a0af;
+    padding: 20px 3px;
+    font-size: 11px;
+}
+
+@media (max-width: 1050px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .main {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 700px) {
+    .app {
+        display: block;
+    }
+
+    .sidebar {
+        width: 100%;
+        max-height: 380px;
+        overflow-y: auto;
+    }
+
+    .nav {
+        width: auto;
+        margin: 3px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .topbar h1 {
+        font-size: 20px;
+    }
+
+    .status {
+        display: none;
+    }
+}
